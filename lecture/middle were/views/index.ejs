@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body align="center">
+    <h1>
+        <%= industry %>
+    </h1>
+
+    <hr color=" #959595" size="1.5px" />
+    <hr color="#959595" size="1.5px" />
+
+    <a href="/">Index</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/home">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/ab">About Us</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/pro">Product</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/cont">Contact Us</a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <hr color=" #959595" size="1.5px" />
+    <hr color="#959595" size="1.5px" />
+    <br><br>
+
+    <h2>
+        <%= pagename %>
+    </h2>
+
+    <table align="center" border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>PlayerName</th>
+                <th>Achivment</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% users.map((u,i)=> { %>
+
+                <tr>
+                    <td>
+                        <%= u.id %>
+                    </td>
+                    <td>
+                        <%= u.name %>
+                    </td>
+                    <td>
+                        <%= u.role %>
+                    </td>
+                </tr>
+
+                <% }) %>
+        </tbody>
+    </table>
+</body>
+
+</html>

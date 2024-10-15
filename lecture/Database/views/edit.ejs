@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Edit User</h1>
+        <form action="/insertUser" method="post">
+            <table border="1">
+                <tr>
+                    <td>Name:-</td>
+                    <td><input type="text" name="name" value="<%= data.name %>"></td>
+                </tr>
+                <tr>
+                    <td>Email:-</td>
+                    <td><input type="text" name="email" value="<%= data.email %>"></td>
+                </tr>
+                <tr>
+                    <td>Password:-</td>
+                    <td><input type="password" name="password" value="<%= data.password %>"></td>
+                </tr>
+                <tr>
+                    <td>Gender:-</td>
+                    <td>
+                        <input type="radio" name="gender" <% if(data.gender == "male") { %> checked <% } %> value="male">Male
+                        <input type="radio" name="gender" <% if(data.gender == "female") { %> checked <% } %> value="female">Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hobby:-</td>
+                    <td>
+                        <input type="checkbox" name="hobby" <% if(data.hobby.includes("travelling")) { %> checked <% } %> value="travelling">Travelling
+                        <input type="checkbox" name="hobby" <% if(data.hobby.includes("photography")) { %> checked <% } %> value="photography">Photography
+                        <input type="checkbox" name="hobby" <% if(data.hobby.includes("gaming")) { %> checked <% } %> value="gaming">Gaming
+                        <input type="checkbox" name="hobby" <% if(data.hobby.includes("coding")) { %> checked <% } %> value="coding">Coding
+                    </td>
+                </tr>
+                <tr>
+                    <td>City:-</td>
+                    <td>
+                        <select name="city">
+                            <option>---select city---</option>
+
+                            <% const city=["surat","Ahemdabad","Rajkot","Bharuch"]; 
+                            city.map((ci)=>{
+                            %>
+                                    <option <% if(data.city == ci) { %> selected <% } %> value="<%= ci %>"><%= ci %></option>
+
+                                <% }) %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Number:-</td>
+                    <td><input type="number" name="number" value="<%= data.number %>"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit"></td>
+                </tr>
+            </table>
+        </form>
+        <a href="/">View</a>
+
+    </div>
+</body>
+</html>

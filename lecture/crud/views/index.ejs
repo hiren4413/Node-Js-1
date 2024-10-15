@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Index Page
+    </title>
+</head>
+
+<body>
+    <div align="center">
+        <h1>
+            Index Page
+        </h1>
+
+        <a href="/">Index</a><br>
+        <a href="/home">Home</a><br>
+        <a href="/ab">About</a><br><br><br><br>
+
+        <form action="/addRecord" method="post">
+
+            <table border="1" cellpadding="7" cellspacing="1">
+
+                <tr>
+                    <td> Name :-</td>
+                    <td><input type="text" name="name"></td>
+                </tr>
+                <tr>
+                    <td> Role :-</td>
+                    <td><input type="text" name="role"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit"></td>
+                </tr>
+
+            </table>
+
+        </form>
+
+        <br><br><br>
+
+        <table border="1" cellpadding="10" cellspacing="1">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>PlayerName</th>
+                    <th>Achivment</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% all.map ((user,i)=>{
+
+                    const {id,name,role} = user
+                    %>
+
+                    <tr>
+                        <td>
+                            <%= ++i %>
+                        </td>
+                        <td>
+                            <%= name %>
+                        </td>
+                        <td>
+                            <%= role %>
+                        </td>
+                        <td>
+                            <a href="/delUser?delId=<%= id %>">Delete</a> 
+                        </td>
+                    </tr>
+
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

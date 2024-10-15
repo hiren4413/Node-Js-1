@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <h1>
+        <%= pagename %>
+    </h1>
+
+        <a href="/">Index</a><br>
+        <a href="/home">Home</a><br>
+        <a href="/ab">About</a><br><br><br><br>
+
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>PlayerName</th>
+                <th>Achivment</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% users.map((u,i)=> { %>
+
+                <tr>
+                    <td>
+                        <%= u.id %>
+                    </td>
+                    <td>
+                        <%= u.name %>
+                    </td>
+                    <td>
+                        <%= u.income %>
+                    </td>
+                </tr>
+
+                <% }) %>
+        </tbody>
+    </table>
+</body>
+
+</html>

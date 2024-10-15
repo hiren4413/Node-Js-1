@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Index Page
+    </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<style>
+    .container{
+        max-width: 900px !important;
+    }
+    form{
+        border: 0;
+        border-radius: 4%;
+        max-width:600px !important ;
+    }
+    .btn{
+        padding-right: 8px;
+    }
+</style>
+
+<body>
+    <h1 class="text-center mb-5 ">
+        Todo List
+    </h1>
+    <div class="container">
+        <form action="/updTask" method="post" class="row bg-light d-flex align-items-center justify-content-center">
+            <div class="col-8 m-3">
+
+                <input type="hidden" class="mb-3" name="editId" value="<%= single.id %>" class="form-control" />
+                <div class="mb-3">
+                    <label class="fs-6">Task</label>
+                    <input type="text" name="work" value="<%= single.work %>" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="fs-6">Status</label>
+                    <select class="form-select" name="status" value="<%= single.status %>" aria-label="Default sel ect example">
+                        <option selected>Completed</option>
+                        <option>Pending</option>
+                        <option>Ongoing</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="fs-6">Deadline</label>
+                    <input type="datetime-local" name="end" value="<%= single.end %>" class="form-control mb-3" />
+                    <button type="submit" class="btn btn-success">
+                        Update Task
+                    </button>
+                </div>
+
+        </form>
+    </div>
+    <br><br><br>
+
+    </div>
+</body>
+
+</html>
