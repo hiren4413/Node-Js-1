@@ -18,7 +18,7 @@ const toDo = [
     },
     {
         id: 3,
-        task: "play Pubg",
+        task: "goto gym",
         course: ["ai", "Data_science", "Web_devlopment"]
     }
 ]
