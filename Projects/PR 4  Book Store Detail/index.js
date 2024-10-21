@@ -8,14 +8,14 @@ const db = require("./config/db")
 
 app.set("view engine","ejs")
 
-const User = require("./model/UserModel")
+const book = require("./model/bookModel")
 
 app.use(express.urlencoded());
 
-// View User
+// View book
 
-app.get("/", (req, res) => { 
-    User.find({})
+app.get("/view", (req, res) => { 
+    book.find({})
     .then((data) => {
         return res.render("view", {
             record : data
@@ -26,30 +26,30 @@ app.get("/", (req, res) => {
     })
 })
 
-// Add User
-app.get("/add", (req, res) => {
+// Add book
+app.get("/", (req, res) => {
     return res.render("add")
 })
 
-// Delete User
+// Delete book
 
-app.get("/delUser",(req,res)=>{
+app.get("/delEntry",(req,res)=>{
     let id = req.query.delId;
-    User.findByIdAndDelete(id)
+    book.findByIdAndDelete(id)
     .then((data)=>{
-        console.log("User Deleted SuccessFully");
-        return res.redirect("/")
+        console.log("Book Deleted SuccessFully");
+        return res.redirect("/view")
     }).catch((err)=>{
         console.log("err");
         return false;
     })
 })
 
-// Edit user
+// Edit book
 
-app.get("/editUser",(req,res)=>{
+app.get("/editBook",(req,res)=>{
     let id = req.query.editId;
-    User.findById(id)
+    book.findById(id)
     .then((single)=>{
         return res.render("edit",{
             data : single 
@@ -60,33 +60,41 @@ app.get("/editUser",(req,res)=>{
     })
 })
 
-// Update User
+// Update bookDetail
 
-app.get("/updateUser",(req,res)=>{
-    
+app.post("/updateBook",(req,res)=>{
+    const {id,name,price,pages,author} = req.body;
+    book.findByIdAndUpdate(id,{
+        name : name,
+        price : price,
+        pages : pages,
+        author : author
+    }).then((data)=>{
+        console.log("Book Updated");
+        return res.redirect('/view');
+    }).catch((err)=>{
+        console.log(err);
+        return false;
+    })
 })
 
-const UserModel = require("./model/UserModel")
+// Insert BookDetail
 
+app.post("/insertBook", (req, res) => {
+    const { name, price, pages, author } = req.body;
 
-app.post("/insertUser", (req, res) => {
-    const { name, email, password, gender, hobby, city, number } = req.body;
-
-    UserModel.create({
+    book.create({
         name: name,
-        email: email,
-        password: password,
-        gender: gender,
-        hobby: hobby,
-        city: city,
-        number: number
+        price: price,
+        pages: pages,
+        author: author
     }).then((data, err) => {
         if (err) {
             console.log(err);
             return false
         }
-        console.log("User Added");
-        return res.redirect("/add")
+        console.log("Book Added");
+        return res.redirect("/")
     })
 });
 
