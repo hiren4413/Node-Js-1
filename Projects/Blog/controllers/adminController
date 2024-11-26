@@ -1,0 +1,49 @@
+const Admin = require("../models/Admin");
+
+module.exports.dashboard = (req, res) => {
+  return res.render("dashboard");
+};
+
+module.exports.addAdmin = (req, res) => {
+  return res.render("addAdmin");
+};
+
+module.exports.viewAdmin = async (req, res) => {
+  try {
+    let adminrecord = await Admin.find({});
+    if (adminrecord) {
+        return res.render('viewAdmin',{
+            adminrecord
+        });
+    }
+    else{
+        return res.render('viewAdmin',[])
+    }
+    return res.render("viewAdmin");
+  } catch (err) {
+    console.log(err);
+    return res.redirect("back");
+  }
+};
+
+module.exports.insertAdminData = async (req, res) => {
+  try {
+    req.body.name = req.body.title;
+    req.body.avatar = "";
+    if (req.file) {
+      req.body.avatar = Admin.adPath + "/" + req.file.fieldname;
+    }
+
+    let adminrecord = await Admin.create(req.body);
+    if (adminrecord) {
+      console.log("Admin record Inserted");
+      return res.redirect("back");
+    } else {
+      console.log("Admin record not Inserted");
+      return res.redirect("back");
+    }
+  } catch (err) {
+    console.log(err);
+    return res.redirect("back");
+  }
+};
